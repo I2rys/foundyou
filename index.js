@@ -23,16 +23,9 @@
 
             try{
                 var response = await request(`${args[0]}${path}`, { timeout: 5000 })
-
                 const dom = new JSDOM(response.body)
 
-                if(dom.window.document.querySelector("input") && response.body.indexOf("Login") !== -1){
-                    if(response.statusCode === 200){
-                        console.log("Admin panel found:", path)
-                    }else if(response.statusCode === 202){
-                        console.log("Unsure admin panel found:", path)
-                    }
-                }
+                if(dom.window.document.querySelector("input") && response.body.indexOf("Login") !== -1) response.statusCode === 200 ? console.log("Admin panel found:", path) : console.log("Unsure admin panel found:", path)
             }catch{}
         },
         {
